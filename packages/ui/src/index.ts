@@ -1,5 +1,23 @@
-// Component exports will be added here as components are built
-// e.g.: export { Button } from "./components/Button";
+export { Button } from "./components/Button";
+export type { ButtonProps, ButtonIntent, ButtonSize } from "./components/Button";
+
+export { Input } from "./components/Input";
+export type { InputProps, InputSize, InputState } from "./components/Input";
+
+export { Badge } from "./components/Badge";
+export type { BadgeProps, BadgeIntent, BadgeSize } from "./components/Badge";
+
+export { Card } from "./components/Card";
+export type { CardProps, CardVariant } from "./components/Card";
+
+export { Avatar } from "./components/Avatar";
+export type { AvatarProps, AvatarSize } from "./components/Avatar";
+
+export { Modal } from "./components/Modal";
+export type { ModalProps, ModalVariant } from "./components/Modal";
+
+export { Toast } from "./components/Toast";
+export type { ToastProps, ToastIntent } from "./components/Toast";
 
 // Utilities
 export { cn } from "./utils/cn";

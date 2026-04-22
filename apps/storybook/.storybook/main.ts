@@ -1,10 +1,11 @@
 import type { StorybookConfig } from "@storybook/react-vite";
 import { mergeConfig } from "vite";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 
 const config: StorybookConfig = {
   stories: [
-    "../../packages/ui/src/**/*.stories.@(ts|tsx)",
-    "../stories/**/*.stories.@(ts|tsx)",
+    "../../../packages/ui/src/**/*.stories.@(ts|tsx)",
   ],
   addons: [
     "@storybook/addon-essentials",
@@ -18,8 +19,9 @@ const config: StorybookConfig = {
   async viteFinal(config) {
     return mergeConfig(config, {
       resolve: {
+        extensions: [".web.tsx", ".web.ts", ".web.jsx", ".web.js", ".tsx", ".ts", ".jsx", ".js"],
         alias: {
-          "react-native": "react-native-web",
+          "react-native": require.resolve("react-native-web"),
         },
       },
       define: {
