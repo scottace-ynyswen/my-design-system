@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "paths": {
+      "react-native": ["./node_modules/react-native-web/src/index"]
+    }
+  },
+  "include": [".storybook", "stories"],
+  "exclude": ["node_modules", "storybook-static"]
+}

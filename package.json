@@ -1,0 +1,21 @@
+{
+  "name": "my-design-system",
+  "private": true,
+  "scripts": {
+    "build":      "turbo run build",
+    "dev":        "turbo run dev --parallel",
+    "storybook":  "turbo run storybook",
+    "test":       "turbo run test",
+    "typecheck":  "turbo run typecheck",
+    "lint":       "turbo run lint"
+  },
+  "devDependencies": {
+    "turbo":      "^2.3.3",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@10.33.1"
+}
