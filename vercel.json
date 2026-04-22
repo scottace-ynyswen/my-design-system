@@ -1,0 +1,6 @@
+{
+  "buildCommand": "pnpm --filter @my-ds/storybook build",
+  "outputDirectory": "apps/storybook/storybook-static",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "framework": null
+}
