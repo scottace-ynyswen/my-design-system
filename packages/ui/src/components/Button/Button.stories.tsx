@@ -72,7 +72,7 @@ export const Primary: Story = {
   parameters: {
     docs: {
       source: {
-        code: `import { Button } from "@tuxedo/ui";
+        code: `import { Button } from "@my-ds/ui";
 import { ArrowRight } from "./icons/ArrowRight";
 
 <Button
@@ -91,7 +91,7 @@ export const Secondary: Story = {
   parameters: {
     docs: {
       source: {
-        code: `import { Button } from "@tuxedo/ui";
+        code: `import { Button } from "@my-ds/ui";
 
 <Button
   label="Secondary"
@@ -108,7 +108,7 @@ export const Ghost: Story = {
   parameters: {
     docs: {
       source: {
-        code: `import { Button } from "@tuxedo/ui";
+        code: `import { Button } from "@my-ds/ui";
 
 <Button
   label="Ghost"
@@ -124,7 +124,7 @@ export const AllVariants: Story = {
   parameters: {
     docs: {
       source: {
-        code: `import { Button } from "@tuxedo/ui";
+        code: `import { Button } from "@my-ds/ui";
 
 // All intents
 <Button label="Primary"   intent="primary"   size="lg" />
