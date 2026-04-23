@@ -8,7 +8,9 @@ const meta: Meta<typeof PriceCard> = {
   title: "App/Price card",
   component: PriceCard,
   tags: ["autodocs"],
-  parameters: {},
+  parameters: {
+    docs: { source: { type: "dynamic", language: "tsx" } },
+  },
   argTypes: {
     product:       { control: { type: "select" }, options: ["motor", "home", "van"] },
     pricePounds:   { control: { type: "number" } },
