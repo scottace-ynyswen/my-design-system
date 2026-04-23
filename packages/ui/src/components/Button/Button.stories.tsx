@@ -69,17 +69,74 @@ type Story = StoryObj<StoryArgs>;
 
 export const Primary: Story = {
   args: { label: "Continue", showRightIcon: true },
+  parameters: {
+    docs: {
+      source: {
+        code: `import { Button } from "@tuxedo/ui";
+import { ArrowRight } from "./icons/ArrowRight";
+
+<Button
+  label="Continue"
+  intent="primary"
+  size="lg"
+  rightIcon={<ArrowRight />}
+/>`,
+      },
+    },
+  },
 };
 
 export const Secondary: Story = {
   args: { label: "Secondary", intent: "secondary" },
+  parameters: {
+    docs: {
+      source: {
+        code: `import { Button } from "@tuxedo/ui";
+
+<Button
+  label="Secondary"
+  intent="secondary"
+  size="lg"
+/>`,
+      },
+    },
+  },
 };
 
 export const Ghost: Story = {
   args: { label: "Ghost", intent: "ghost" },
+  parameters: {
+    docs: {
+      source: {
+        code: `import { Button } from "@tuxedo/ui";
+
+<Button
+  label="Ghost"
+  intent="ghost"
+  size="lg"
+/>`,
+      },
+    },
+  },
 };
 
 export const AllVariants: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `import { Button } from "@tuxedo/ui";
+
+// All intents
+<Button label="Primary"   intent="primary"   size="lg" />
+<Button label="Secondary" intent="secondary" size="lg" />
+<Button label="Ghost"     intent="ghost"     size="lg" />
+
+// States
+<Button label="Loading…" intent="primary" size="lg" loading />
+<Button label="Disabled" intent="primary" size="lg" disabled />`,
+      },
+    },
+  },
   render: (args) => (
     <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
