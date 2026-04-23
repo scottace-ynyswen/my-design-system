@@ -4,7 +4,8 @@ import { Input } from "./Input";
 const meta: Meta<typeof Input> = {
   title: "Components/Input",
   component: Input,
-  parameters: { layout: "centered" },
+  tags: ["autodocs"],
+  parameters: {},
   decorators: [(Story) => <div style={{ width: 360 }}><Story /></div>],
   argTypes: {
     size:     { control: "select", options: ["sm", "md", "lg"] },
@@ -15,8 +16,6 @@ const meta: Meta<typeof Input> = {
 
 export default meta;
 type Story = StoryObj<typeof Input>;
-
-export const Playground: Story = {};
 
 export const WithLabel: Story = {
   args: { label: "Email address", placeholder: "you@example.com", hint: "We'll never share your email." },

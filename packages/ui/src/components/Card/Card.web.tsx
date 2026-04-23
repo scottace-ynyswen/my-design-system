@@ -8,18 +8,24 @@ const cardVariants = cva(
   {
     variants: {
       variant: {
-        elevated: "bg-mono-white shadow-md",
-        outlined: "bg-mono-white border border-mono-midGrey",
-        ghost:    "bg-mono-lightGrey",
+        elevated: "bg-surface shadow-md",
+        outlined: "bg-surface border border-border",
+        ghost:    "bg-surface-overlay",
       },
       isInteractive: {
-        true:  "cursor-pointer hover:opacity-90 active:opacity-80 transition-opacity",
+        true:  "cursor-pointer hover:opacity-90 active:opacity-80 transition-opacity focus:outline-none focus:ring-4 focus:ring-aqua-500",
         false: "",
       },
     },
     defaultVariants: { variant: "elevated", isInteractive: false },
   }
 );
+
+const headerVariants = cva("px-6 pt-5 pb-3");
+const bodyVariants   = cva("px-6 py-3");
+const footerVariants = cva("px-6 py-4 border-t border-border");
+const titleVariants  = cva("font-poppins font-semibold text-heading text-mono-black");
+const subtitleVariants = cva("font-poppins text-sm leading-5 text-mono-charcoal mt-1");
 
 export function Card({
   variant = "elevated",
@@ -30,32 +36,28 @@ export function Card({
   onPress,
   className,
 }: CardProps) {
-  const Tag = onPress ? "button" : "div";
+  const classes = cn(cardVariants({ variant, isInteractive: !!onPress }), className);
 
-  return (
-    <Tag
-      type={onPress ? "button" : undefined}
-      onClick={onPress}
-      className={cn(cardVariants({ variant, isInteractive: !!onPress }), className)}
-    >
+  const content = (
+    <>
       {(title || subtitle) && (
-        <div className="px-6 pt-5 pb-3">
-          {title && (
-            <h3 className="font-poppins font-semibold text-[22px] leading-7 text-mono-black">
-              {title}
-            </h3>
-          )}
-          {subtitle && (
-            <p className="font-poppins text-sm leading-5 text-mono-charcoal mt-1">
-              {subtitle}
-            </p>
-          )}
+        <div className={headerVariants()}>
+          {title    && <h3 className={titleVariants()}>{title}</h3>}
+          {subtitle && <p className={subtitleVariants()}>{subtitle}</p>}
         </div>
       )}
-      {children && <div className="px-6 py-3">{children}</div>}
-      {footer && (
-        <div className="px-6 py-4 border-t border-mono-midGrey">{footer}</div>
-      )}
-    </Tag>
+      {children && <div className={bodyVariants()}>{children}</div>}
+      {footer   && <div className={footerVariants()}>{footer}</div>}
+    </>
   );
+
+  if (onPress) {
+    return (
+      <button type="button" onClick={onPress as React.MouseEventHandler} className={classes}>
+        {content}
+      </button>
+    );
+  }
+
+  return <div className={classes}>{content}</div>;
 }

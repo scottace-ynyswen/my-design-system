@@ -1,6 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
+import type { ButtonProps } from "./Button.types";
 
 function ArrowRight() {
   return (
@@ -16,43 +17,58 @@ function ArrowRight() {
   );
 }
 
-const meta: Meta<typeof Button> = {
-  title: "Components/Button",
+type StoryArgs = ButtonProps & { showRightIcon?: boolean; showLeftIcon?: boolean };
+
+const meta: Meta<StoryArgs> = {
+  title: "Components/Buttons & links",
   component: Button,
-  parameters: { layout: "centered" },
+  tags: ["autodocs"],
+  parameters: {},
   argTypes: {
-    intent:   { control: "select", options: ["primary", "secondary", "ghost", "destructive"] },
-    size:     { control: "select", options: ["sm", "md", "lg"] },
-    loading:  { control: "boolean" },
-    disabled: { control: "boolean" },
+    size: {
+      name: "Device",
+      description: "Switch between mobile (md) and desktop (lg) sizing.",
+      control: { type: "inline-radio", labels: { md: "Mobile", lg: "Desktop" } },
+      options: ["md", "lg"],
+      table: {
+        type: { summary: '"md" | "lg"' },
+        defaultValue: { summary: "lg" },
+      },
+    },
+    intent: {
+      control: { type: "select" },
+      options: ["primary", "secondary", "ghost"],
+    },
+    loading:        { control: "boolean" },
+    disabled:       { control: "boolean" },
+    showRightIcon:  { name: "Right icon", control: "boolean", description: "Show an arrow on the right." },
+    showLeftIcon:   { name: "Left icon",  control: "boolean", description: "Show an arrow on the left." },
+    leftIcon:       { control: false, table: { disable: true } },
+    rightIcon:      { control: false, table: { disable: true } },
   },
   args: {
-    label:    "Button",
-    intent:   "primary",
-    size:     "md",
-    loading:  false,
-    disabled: false,
+    label:         "Button",
+    intent:        "primary",
+    size:          "lg",
+    loading:       false,
+    disabled:      false,
+    showRightIcon: false,
+    showLeftIcon:  false,
   },
+  render: ({ showRightIcon, showLeftIcon, ...args }) => (
+    <Button
+      {...args}
+      rightIcon={showRightIcon ? <ArrowRight /> : undefined}
+      leftIcon={showLeftIcon  ? <ArrowRight /> : undefined}
+    />
+  ),
 };
 
 export default meta;
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<StoryArgs>;
 
-// ── Playground ────────────────────────────────────────────────────────────────
-export const Playground: Story = {};
-
-// ── Intent variants ───────────────────────────────────────────────────────────
 export const Primary: Story = {
-  args: { label: "Primary", intent: "primary" },
-};
-
-export const Continue: Story = {
-  args: {
-    label: "Continue",
-    intent: "primary",
-    size: "md",
-    rightIcon: <ArrowRight />,
-  },
+  args: { label: "Continue", showRightIcon: true },
 };
 
 export const Secondary: Story = {
@@ -63,57 +79,17 @@ export const Ghost: Story = {
   args: { label: "Ghost", intent: "ghost" },
 };
 
-export const Destructive: Story = {
-  args: { label: "Delete", intent: "destructive" },
-};
-
-// ── Sizes ─────────────────────────────────────────────────────────────────────
-export const Small: Story = {
-  args: { label: "Small", size: "sm" },
-};
-
-export const Medium: Story = {
-  args: { label: "Medium", size: "md" },
-};
-
-export const Large: Story = {
-  args: { label: "Large", size: "lg" },
-};
-
-// ── States ────────────────────────────────────────────────────────────────────
-export const Loading: Story = {
-  args: { label: "Saving…", loading: true },
-};
-
-export const Disabled: Story = {
-  args: { label: "Disabled", disabled: true },
-};
-
-// ── All variants at a glance ──────────────────────────────────────────────────
 export const AllVariants: Story = {
-  render: () => (
+  render: (args) => (
     <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-      {/* Sizes */}
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-        <Button label="Small"  size="sm" />
-        <Button label="Medium" size="md" />
-        <Button label="Large"  size="lg" />
+        <Button {...args} label="Primary"   intent="primary" />
+        <Button {...args} label="Secondary" intent="secondary" />
+        <Button {...args} label="Ghost"     intent="ghost" />
       </div>
-      {/* Intents */}
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-        <Button label="Primary"     intent="primary" />
-        <Button label="Secondary"   intent="secondary" />
-        <Button label="Ghost"       intent="ghost" />
-        <Button label="Destructive" intent="destructive" />
-      </div>
-      {/* With icon */}
-      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-        <Button label="Continue" intent="primary" rightIcon={<ArrowRight />} />
-      </div>
-      {/* States */}
-      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-        <Button label="Loading…" loading />
-        <Button label="Disabled" disabled />
+        <Button {...args} label="Loading…" loading />
+        <Button {...args} label="Disabled" disabled />
       </div>
     </div>
   ),

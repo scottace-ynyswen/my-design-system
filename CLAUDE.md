@@ -61,6 +61,51 @@ const buttonVariants = cva('base-classes', {
 
 ---
 
+## GlueStack + Tailwind Mapping Rules
+
+### When to use GlueStack primitives
+- GlueStack primitives (`Pressable`, etc.) are for **`.tsx` cross-platform files** (React Native)
+- **`.web.tsx` files use native HTML elements** — `@gluestack-ui/pressable` uses CJS and breaks Vite
+  - Interactive elements → `<button type="button" onClick={...}>`
+  - Clickable containers → `<button type="button" onClick={...}>` (not `<div>`)
+  - Backdrop overlays → `<div onClick={...} role="presentation">`
+  - Display-only → `<div>`, `<span>`, `<img>` as normal
+
+### Semantic token mapping (always prefer semantic over raw)
+| Raw token | Semantic replacement |
+|---|---|
+| `bg-mono-white` | `bg-surface` |
+| `bg-mono-lightGrey` | `bg-surface-overlay` |
+| `border-mono-midGrey` | `border-border` |
+
+### Font size tokens (paired size + line-height)
+| Token | Size | Line height | Use for |
+|---|---|---|---|
+| `text-2xs` | 10px | 14px | xs initials, tiny labels |
+| `text-heading` | 22px | 28px | lg button label, modal title |
+| `text-body-lg` | 20px | 27px | md button label, md input |
+
+### Inline style exceptions
+Tailwind classes cannot express runtime-dynamic values. These two patterns are the approved exceptions:
+
+1. **Combined focus + selection ring** (avoids CSS `box-shadow` override conflicts):
+```tsx
+const shadow = [
+  `inset 0 0 0 ${selected ? 4 : 2}px #1f1f1f`,
+  focused ? `0 0 0 4px ${accentColor}` : null,
+].filter(Boolean).join(", ");
+// Applied as: style={{ boxShadow: shadow }}
+```
+
+2. **Height animation** (maxHeight slide for help text / sub-questions):
+```tsx
+style={{ maxHeight: open ? `${ref.current?.scrollHeight}px` : 0, transition: "max-height 300ms ease-in-out", overflow: "hidden" }}
+```
+
+No other inline styles are permitted.
+
+---
+
 ## Forbidden Operations
 - Do NOT install additional styling libraries (emotion, styled-components, etc.)
 - Do NOT use `any` in TypeScript

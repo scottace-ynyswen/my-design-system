@@ -5,7 +5,8 @@ import { Badge } from "../Badge";
 const meta: Meta<typeof Card> = {
   title: "Components/Card",
   component: Card,
-  parameters: { layout: "centered" },
+  tags: ["autodocs"],
+  parameters: {},
   decorators: [(Story) => <div style={{ width: 380 }}><Story /></div>],
   argTypes: {
     variant: { control: "select", options: ["elevated", "outlined", "ghost"] },
@@ -15,8 +16,6 @@ const meta: Meta<typeof Card> = {
 
 export default meta;
 type Story = StoryObj<typeof Card>;
-
-export const Playground: Story = {};
 
 export const Elevated: Story = {
   args: { variant: "elevated", title: "Elevated card", subtitle: "Drops a shadow below the card surface." },

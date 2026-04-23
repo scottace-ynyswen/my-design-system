@@ -5,6 +5,9 @@ const require = createRequire(import.meta.url);
 
 const config: StorybookConfig = {
   stories: [
+    "../stories/**/*.mdx",
+    "../stories/**/*.stories.@(ts|tsx)",
+    "../../../packages/ui/src/**/*.mdx",
     "../../../packages/ui/src/**/*.stories.@(ts|tsx)",
   ],
   addons: [

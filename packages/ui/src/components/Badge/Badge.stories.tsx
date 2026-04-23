@@ -2,9 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Badge } from "./Badge";
 
 const meta: Meta<typeof Badge> = {
-  title: "Components/Badge",
+  title: "Components/Errors & alerts/Badge",
   component: Badge,
-  parameters: { layout: "centered" },
+  tags: ["autodocs"],
+  parameters: {},
   argTypes: {
     intent: { control: "select", options: ["default", "primary", "success", "warning", "error", "info"] },
     size:   { control: "select", options: ["sm", "md", "lg"] },
@@ -14,8 +15,6 @@ const meta: Meta<typeof Badge> = {
 
 export default meta;
 type Story = StoryObj<typeof Badge>;
-
-export const Playground: Story = {};
 
 export const Default:  Story = { args: { label: "Default",  intent: "default"  } };
 export const Primary:  Story = { args: { label: "New",      intent: "primary"  } };

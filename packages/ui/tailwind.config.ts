@@ -16,6 +16,11 @@ const config: Config = {
         mono:    ["JetBrains Mono", "monospace"],
         poppins: ["Poppins", "sans-serif"],
       },
+      fontSize: {
+        "2xs":     ["10px", { lineHeight: "14px" }],
+        "heading": ["22px", { lineHeight: "28px" }],
+        "body-lg": ["20px", { lineHeight: "27px" }],
+      },
       borderRadius: {
         "4xl": "2rem",
       },
@@ -24,6 +29,10 @@ const config: Config = {
           50:  "#f0ecff",
           500: "#7b61ff",
           900: "#3b2a7a",
+        },
+        aqua: {
+          500: "#58AAE0",
+          600: "#4C90BD",
         },
         mono: {
           black:     "#1f1f1f",
@@ -45,6 +54,11 @@ const config: Config = {
         border: {
           DEFAULT: "#d4d4d4",
           focus:   "#7b61ff",
+        },
+        product: {
+          motor: "#8AC4E9",
+          home:  "#F5A623",
+          van:   "#7ED321",
         },
         feedback: {
           error:   "#dc2626",

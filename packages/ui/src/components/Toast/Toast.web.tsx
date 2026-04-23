@@ -55,8 +55,9 @@ export function Toast({ message, intent = "success", title, onDismiss, className
       </div>
       {onDismiss && (
         <button
+          type="button"
           onClick={onDismiss}
-          className="shrink-0 opacity-70 hover:opacity-100 transition-opacity mt-0.5"
+          className="shrink-0 opacity-70 hover:opacity-100 transition-opacity mt-0.5 focus:outline-none focus:ring-4 focus:ring-aqua-500 rounded-sm"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
             <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />

@@ -4,11 +4,11 @@ import { cn } from "../../utils/cn";
 import type { InputProps } from "./Input.types";
 
 const wrapperVariants = cva(
-  "flex items-center w-full border rounded-xl bg-mono-white transition-colors focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-border-focus",
+  "flex items-center w-full border rounded-xl bg-surface transition-colors focus-within:ring-4 focus-within:ring-aqua-500",
   {
     variants: {
       state: {
-        default: "border-mono-midGrey",
+        default: "border-border",
         error:   "border-feedback-error",
       },
       size: {
@@ -17,7 +17,7 @@ const wrapperVariants = cva(
         lg: "px-5 gap-3",
       },
       isDisabled: {
-        true:  "opacity-40 bg-mono-lightGrey cursor-not-allowed",
+        true:  "opacity-40 bg-surface-overlay cursor-not-allowed",
         false: "",
       },
     },
@@ -31,8 +31,8 @@ const inputVariants = cva(
     variants: {
       size: {
         sm: "py-2 text-sm leading-5",
-        md: "py-3 text-xl leading-[27px]",
-        lg: "py-4 text-[22px] leading-7",
+        md: "py-3 text-body-lg",
+        lg: "py-4 text-heading",
       },
     },
     defaultVariants: { size: "md" },

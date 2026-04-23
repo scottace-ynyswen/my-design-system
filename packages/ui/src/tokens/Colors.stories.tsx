@@ -233,8 +233,8 @@ function ColorsPage() {
 }
 
 const meta: Meta = {
-  title: "Tokens/Colors",
-  parameters: { layout: "fullscreen" },
+  title: "Colours",
+  parameters: { layout: "fullscreen", nopadding: true },
 };
 
 export default meta;

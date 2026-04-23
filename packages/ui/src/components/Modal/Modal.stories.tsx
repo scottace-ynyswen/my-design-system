@@ -4,9 +4,10 @@ import { Modal } from "./Modal";
 import { Button } from "../Button";
 
 const meta: Meta<typeof Modal> = {
-  title: "Components/Modal",
+  title: "Components/Modals",
   component: Modal,
-  parameters: { layout: "centered" },
+  tags: ["autodocs"],
+  parameters: {},
   argTypes: {
     variant: { control: "select", options: ["default", "destructive"] },
     visible: { control: "boolean" },

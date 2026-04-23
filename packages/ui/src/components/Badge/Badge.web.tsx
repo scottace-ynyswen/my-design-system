@@ -8,7 +8,7 @@ const badgeVariants = cva(
   {
     variants: {
       intent: {
-        default: "bg-mono-lightGrey text-mono-black",
+        default: "bg-surface-overlay text-mono-black",
         primary: "bg-brand-500 text-mono-white",
         success: "bg-feedback-success text-mono-white",
         warning: "bg-feedback-warning text-mono-black",

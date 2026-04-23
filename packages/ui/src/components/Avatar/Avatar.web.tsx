@@ -19,18 +19,37 @@ const avatarVariants = cva(
   }
 );
 
-const initialsVariants = cva("font-poppins font-semibold text-mono-white select-none", {
-  variants: {
-    size: {
-      xs: "text-[10px]",
-      sm: "text-xs",
-      md: "text-sm",
-      lg: "text-base",
-      xl: "text-xl",
+const initialsVariants = cva(
+  "font-poppins font-semibold text-mono-white select-none",
+  {
+    variants: {
+      size: {
+        xs: "text-2xs",
+        sm: "text-xs",
+        md: "text-sm",
+        lg: "text-base",
+        xl: "text-xl",
+      },
     },
-  },
-  defaultVariants: { size: "md" },
-});
+    defaultVariants: { size: "md" },
+  }
+);
+
+const fallbackIconVariants = cva(
+  "fill-current text-mono-white",
+  {
+    variants: {
+      size: {
+        xs: "size-3",
+        sm: "size-4",
+        md: "size-5",
+        lg: "size-6",
+        xl: "size-8",
+      },
+    },
+    defaultVariants: { size: "md" },
+  }
+);
 
 function getInitials(name: string) {
   return name
@@ -42,20 +61,14 @@ function getInitials(name: string) {
 }
 
 export function Avatar({ src, name, size = "md", className }: AvatarProps) {
-  if (src) {
-    return (
-      <div className={cn(avatarVariants({ size }), className)}>
-        <img src={src} alt={name ?? "avatar"} className="w-full h-full object-cover" />
-      </div>
-    );
-  }
-
   return (
     <div className={cn(avatarVariants({ size }), className)}>
-      {name ? (
+      {src ? (
+        <img src={src} alt={name ?? "avatar"} className="w-full h-full object-cover" />
+      ) : name ? (
         <span className={initialsVariants({ size })}>{getInitials(name)}</span>
       ) : (
-        <svg viewBox="0 0 24 24" className="w-1/2 h-1/2 fill-current text-mono-white">
+        <svg viewBox="0 0 24 24" className={fallbackIconVariants({ size })}>
           <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
         </svg>
       )}

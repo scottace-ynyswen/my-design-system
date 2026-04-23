@@ -1,6 +1,6 @@
 import type { PressableProps } from "react-native";
 
-export type ButtonIntent = "primary" | "secondary" | "ghost" | "destructive";
+export type ButtonIntent = "primary" | "secondary" | "ghost";
 export type ButtonSize = "sm" | "md" | "lg";
 
 export interface ButtonProps extends Omit<PressableProps, "children"> {
