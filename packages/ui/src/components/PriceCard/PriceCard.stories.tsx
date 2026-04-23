@@ -2,8 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { PriceCard } from "./PriceCard.web";
 
-// Figma asset — expires after 7 days; replace with a stable hosted logo URL
-const AXA_LOGO = "https://www.figma.com/api/mcp/asset/40be629d-c272-470c-b88e-6c3f7f42d220";
+const AXA_LOGO = "https://www.figma.com/api/mcp/asset/34396799-c5d0-4c67-8014-acf93a4f2451";
 
 const meta: Meta<typeof PriceCard> = {
   title: "App/Price card",
@@ -19,12 +18,11 @@ const meta: Meta<typeof PriceCard> = {
     insurerName:   { control: "text" },
   },
   args: {
-    insurerName:   "AXA",
-    insurerLogo:   AXA_LOGO,
-    pricePounds:   276,
-    pricePence:    98,
-    expiresInDays: 3,
-    product:       "motor",
+    insurerName: "AXA",
+    insurerLogo: AXA_LOGO,
+    pricePounds: 276,
+    pricePence:  98,
+    product:     "motor",
   },
   render: (args) => (
     <div style={{ width: 311 }}>
@@ -38,10 +36,10 @@ type Story = StoryObj<typeof PriceCard>;
 
 export const Default: Story = {};
 
-export const ExpiringToday: Story = {
-  args: { expiresInDays: 1 },
+export const ExpiresIn3Days: Story = {
+  args: { expiresInDays: 3 },
 };
 
-export const NoExpiry: Story = {
-  args: { expiresInDays: undefined },
+export const ExpiringToday: Story = {
+  args: { expiresInDays: 1 },
 };

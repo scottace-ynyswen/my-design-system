@@ -24,10 +24,10 @@ const preview: Preview = {
     actions: { argTypesRegex: "^on[A-Z].*" },
     layout: "fullscreen",
     backgrounds: {
-      default: "light",
+      default: "canvas",
       values: [
-        { name: "light",   value: "#ffffff" },
-        { name: "surface", value: "#f8fafc" },
+        { name: "canvas",  value: "#f5f5f5" },
+        { name: "white",   value: "#ffffff" },
         { name: "dark",    value: "#0f172a" },
       ],
     },

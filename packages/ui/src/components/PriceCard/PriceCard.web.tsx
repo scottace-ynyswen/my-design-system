@@ -34,7 +34,7 @@ export function PriceCard({
     <div className={cn("flex flex-col w-full overflow-hidden", className)}>
       <div className={cn("h-1 w-full shrink-0", productTopBar[product])} />
       <div className="flex items-stretch">
-        <div className="flex items-center justify-center bg-surface w-[104px] shrink-0">
+        <div className="flex items-center justify-center bg-surface w-[104px] min-h-[80px] shrink-0">
           <img
             src={insurerLogo}
             alt={insurerName}
@@ -42,7 +42,7 @@ export function PriceCard({
           />
         </div>
         <div className="flex flex-col flex-1 min-w-0">
-          <div className="bg-mono-midGrey flex items-center px-4 py-[15px]">
+          <div className="bg-mono-midGrey flex flex-1 items-center px-4 py-[15px]">
             <span className="font-poppins font-bold text-heading text-mono-black">
               £{pricePounds}.
             </span>
