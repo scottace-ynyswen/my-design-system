@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { RadioGroupField, YesNoField, SelectField, Button } from "@my-ds/ui";
+import { RadioGroupField, YesNoField, SelectField, SliderField, Button } from "@my-ds/ui";
 import type { YesNoValue } from "@my-ds/ui";
 
 function buildStartDates() {
@@ -22,6 +22,7 @@ interface Props {
 
 export default function DriverDetailsPage({ reg, onContinue }: Props) {
   const [coverType, setCoverType] = useState("");
+  const [vehicleValue, setVehicleValue] = useState(10000);
   const [startDate, setStartDate] = useState("");
   const [ownsOtherVehicle, setOwnsOtherVehicle] = useState<YesNoValue>(null);
   const [hasClaims, setHasClaims] = useState<YesNoValue>(null);
@@ -48,6 +49,16 @@ export default function DriverDetailsPage({ reg, onContinue }: Props) {
         ]}
         value={coverType}
         onChange={setCoverType}
+      />
+
+      <SliderField
+        question="What is the value of your vehicle?"
+        bodyText="Enter the current market value of your car, not the price you originally paid."
+        min={500}
+        max={50000}
+        step={500}
+        value={vehicleValue}
+        onChange={setVehicleValue}
       />
 
       <SelectField
