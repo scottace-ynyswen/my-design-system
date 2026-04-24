@@ -9,7 +9,7 @@ const coverDates = Array.from({ length: 30 }, (_, i) => {
 });
 
 const meta: Meta<typeof SelectField> = {
-  title: "Components/Form fields/Select Field",
+  title: "Components/Form fields/Drop down",
   component: SelectField,
   tags: ["autodocs"],
   parameters: {},
@@ -24,8 +24,3 @@ type Story = StoryObj<typeof SelectField>;
 
 export const Default: Story = {};
 
-export const WithTip: Story = {
-  args: {
-    tipText: "We'll automatically email you car insurance renewal reminders and quotes based on the date you enter here and the rest of the information in this form. You can opt out of this service in your account area.",
-  },
-};
