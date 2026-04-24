@@ -34,5 +34,8 @@ export type { RadioGroupFieldProps, RadioOption } from "./components/RadioGroupF
 export { SliderField } from "./components/SliderField";
 export type { SliderFieldProps } from "./components/SliderField";
 
+export { NumberInputField } from "./components/NumberInputField";
+export type { NumberInputFieldProps } from "./components/NumberInputField";
+
 // Utilities
 export { cn } from "./utils/cn";
