@@ -5,15 +5,12 @@ function Welcome() {
   return (
     <div style={{ padding: "48px 56px", maxWidth: 720, fontFamily: "sans-serif" }}>
       <h1 style={{ fontSize: 32, fontWeight: 700, color: "#1f1f1f", marginBottom: 20, lineHeight: 1.2 }}>
-        Tuxedo Component Library
+        Design system test ground
       </h1>
-      <p style={{ fontSize: 16, lineHeight: 1.7, color: "#3c3c3c", marginBottom: 16 }}>
-        The Tuxedo Component Library is a library of UI components to facilitate the composition
-        of visually and behaviourally consistent UI across different Confused branded applications.
-      </p>
       <p style={{ fontSize: 16, lineHeight: 1.7, color: "#3c3c3c" }}>
-        The components are built with Stencil.js and are available as a package of framework
-        agnostic native web components, or as a package of React components.
+        This storybook is being used by design to test how our team can translate designs from Figma
+        into usable patterns and components that engineering can use directly within multi-channel
+        workflow. Not everything here works and there are wrong style, code snippets missing.
       </p>
     </div>
   );
