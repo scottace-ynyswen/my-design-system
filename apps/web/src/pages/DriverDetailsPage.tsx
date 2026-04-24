@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { RadioGroupField, YesNoField, SelectField, SliderField, Button } from "@my-ds/ui";
 import type { YesNoValue } from "@my-ds/ui";
 import { CelebrationBurst } from "../components/CelebrationBurst";
@@ -26,14 +26,13 @@ export default function DriverDetailsPage({ reg, onContinue }: Props) {
   const [vehicleValue, setVehicleValue] = useState(10000);
   const [startDate, setStartDate] = useState("");
   const [celebrate, setCelebrate] = useState(false);
-  const dateFieldRef = useRef<HTMLDivElement>(null);
   const [ownsOtherVehicle, setOwnsOtherVehicle] = useState<YesNoValue>(null);
   const [hasClaims, setHasClaims] = useState<YesNoValue>(null);
   const [ncb, setNcb] = useState("");
 
   return (
     <>
-    <CelebrationBurst show={celebrate} originRef={dateFieldRef} onDone={() => setCelebrate(false)} />
+    <CelebrationBurst show={celebrate} onDone={() => setCelebrate(false)} />
     <div className="flex flex-col gap-10">
       <div>
         <p className="font-poppins text-sm text-text-secondary mb-1">Registration: {reg.toUpperCase()}</p>
@@ -66,15 +65,13 @@ export default function DriverDetailsPage({ reg, onContinue }: Props) {
         onChange={setVehicleValue}
       />
 
-      <div ref={dateFieldRef}>
-        <SelectField
-          question="When do you need your cover to start?"
-          options={buildStartDates()}
-          value={startDate}
-          onChange={(v) => { setStartDate(v); setCelebrate(true); }}
-          placeholder="Select a start date"
-        />
-      </div>
+      <SelectField
+        question="When do you need your cover to start?"
+        options={buildStartDates()}
+        value={startDate}
+        onChange={(v) => { setStartDate(v); setCelebrate(true); }}
+        placeholder="Select a start date"
+      />
 
       <YesNoField
         question="Does the main driver own or use another vehicle?"
