@@ -68,6 +68,10 @@ export function Button({
       onClick={onPress as unknown as React.MouseEventHandler<HTMLButtonElement>}
       className={cn(buttonVariants({ intent, size, isDisabled }), !isDisabled && "group", className)}
     >
+      {!loading && leftIcon && (
+        <span className={cn(isDisabled && "opacity-25")}>{leftIcon}</span>
+      )}
+      <span className={labelVariants({ intent, size })}>{label}</span>
       {loading ? (
         <svg
           className={cn("animate-spin", intent === "primary" ? "text-mono-white" : "text-mono-black")}
@@ -76,13 +80,9 @@ export function Button({
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3V4a10 10 0 100 20v-4l-3 3 3 3v-2a8 8 0 01-8-8z" />
         </svg>
-      ) : leftIcon ? (
-        <span className={cn(isDisabled && "opacity-25")}>{leftIcon}</span>
-      ) : null}
-      <span className={labelVariants({ intent, size })}>{label}</span>
-      {!loading && rightIcon && (
+      ) : rightIcon ? (
         <span className={cn(isDisabled && "opacity-25")}>{rightIcon}</span>
-      )}
+      ) : null}
     </button>
   );
 }
