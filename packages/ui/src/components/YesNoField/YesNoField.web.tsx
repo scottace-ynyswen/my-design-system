@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { cn } from "../../utils/cn";
 import type { YesNoFieldProps, YesNoValue } from "./YesNoField.types";
 
@@ -27,37 +27,59 @@ function ChevronRight({ open }: { open: boolean }) {
   );
 }
 
+function ErrorIcon() {
+  return (
+    <div className="flex items-center justify-center bg-semantic-error w-6 h-6 shrink-0">
+      <svg width="4" height="12" viewBox="0 0 4 12" fill="none" aria-hidden="true">
+        <rect width="4" height="7" rx="2" fill="white" />
+        <rect y="9.5" width="4" height="2.5" rx="1.25" fill="white" />
+      </svg>
+    </div>
+  );
+}
+
 export function YesNoField({
   question,
+  bodyText,
   helpLinkLabel = "What are the modifications?",
   helpContent,
+  error,
+  defaultHelpOpen = false,
   value,
   onChange,
   accentColor = "#58AAE0",
   className,
 }: YesNoFieldProps) {
   const [internalValue, setInternalValue] = useState<YesNoValue>(null);
-  const [helpOpen, setHelpOpen] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(defaultHelpOpen);
   const [focusedOpt, setFocusedOpt] = useState<"yes" | "no" | null>(null);
+  const [helpHeight, setHelpHeight] = useState(0);
   const helpRef = useRef<HTMLDivElement>(null);
 
   const controlled = value !== undefined;
   const selected = controlled ? value : internalValue;
+
+  useEffect(() => {
+    setHelpHeight(helpOpen ? (helpRef.current?.scrollHeight ?? 0) : 0);
+  }, [helpOpen]);
 
   function handleSelect(v: "yes" | "no") {
     if (!controlled) setInternalValue(v);
     onChange?.(v);
   }
 
-  const helpHeight = helpOpen ? (helpRef.current?.scrollHeight ?? 0) : 0;
-
   return (
     <div className={cn("flex flex-col gap-4 items-start", className)}>
-      {/* Question + help link */}
       <div className="flex flex-col gap-4 items-start w-full">
         <h2 className="font-poppins font-semibold text-[22px] leading-7 text-mono-black">
           {question}
         </h2>
+
+        {bodyText && (
+          <p className="font-poppins font-normal text-[18px] leading-[26px] text-mono-black">
+            {bodyText}
+          </p>
+        )}
 
         {helpContent && (
           <div className="flex flex-col items-start w-full">
@@ -73,7 +95,6 @@ export function YesNoField({
               </span>
             </button>
 
-            {/* Slide-down help panel */}
             <div
               style={{ maxHeight: helpHeight, overflow: "hidden", transition: "max-height 300ms ease-in-out" }}
             >
@@ -83,9 +104,17 @@ export function YesNoField({
             </div>
           </div>
         )}
+
+        {error && (
+          <div className="flex items-center gap-2" role="alert">
+            <ErrorIcon />
+            <p className="font-poppins font-semibold text-[18px] leading-[26px] text-semantic-error">
+              {error}
+            </p>
+          </div>
+        )}
       </div>
 
-      {/* Yes / No radio buttons */}
       <div className="flex gap-4 items-center">
         {(["yes", "no"] as const).map((opt) => {
           const ringPx = selected === opt ? 4 : 2;
@@ -95,22 +124,22 @@ export function YesNoField({
           ].filter(Boolean).join(", ");
 
           return (
-          <button
-            key={opt}
-            type="button"
-            role="radio"
-            aria-checked={selected === opt}
-            onClick={() => handleSelect(opt)}
-            onFocus={() => setFocusedOpt(opt)}
-            onBlur={() => setFocusedOpt(null)}
-            style={{ boxShadow: shadow }}
-            className="flex items-center gap-4 px-4 py-[10px] w-[172px] bg-white cursor-pointer focus:outline-none transition-all duration-150"
-          >
-            <RadioCircle selected={selected === opt} accentColor={accentColor} />
-            <span className="font-poppins font-normal text-[18px] leading-[26px] text-mono-black capitalize">
-              {opt}
-            </span>
-          </button>
+            <button
+              key={opt}
+              type="button"
+              role="radio"
+              aria-checked={selected === opt}
+              onClick={() => handleSelect(opt)}
+              onFocus={() => setFocusedOpt(opt)}
+              onBlur={() => setFocusedOpt(null)}
+              style={{ boxShadow: shadow }}
+              className="flex items-center gap-4 px-4 py-[10px] w-[172px] bg-white cursor-pointer focus:outline-none transition-all duration-150"
+            >
+              <RadioCircle selected={selected === opt} accentColor={accentColor} />
+              <span className="font-poppins font-normal text-[18px] leading-[26px] text-mono-black capitalize">
+                {opt}
+              </span>
+            </button>
           );
         })}
       </div>

@@ -53,6 +53,9 @@ const config: Config = {
           home:  "#F5A623",
           van:   "#7ED321",
         },
+        semantic: {
+          error: "#A20101",
+        },
         feedback: {
           error:   "#dc2626",
           success: "#16a34a",

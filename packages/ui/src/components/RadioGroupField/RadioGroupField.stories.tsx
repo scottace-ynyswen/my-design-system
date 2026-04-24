@@ -52,6 +52,59 @@ export const Stacked: Story = {
 };
 
 
+export const QuestionOnly: StoryObj = {
+  render: () => (
+    <YesNoField
+      question="Does the driver own or use another vehicle?"
+    />
+  ),
+};
+
+export const WithSubCopy: StoryObj = {
+  render: () => (
+    <YesNoField
+      question="Does the driver own or use another vehicle?"
+      bodyText="Sub copy is displayed directly under the question, its used for questions which need a little more guidance for users to answer"
+    />
+  ),
+};
+
+export const HelpLinkClosed: StoryObj = {
+  render: () => (
+    <YesNoField
+      question="Does the driver own or use another vehicle?"
+      bodyText="Sub copy is displayed directly under the question, its used for questions which need a little more guidance for users to answer"
+      helpLinkLabel="Descriptive help link"
+      helpContent="Help copy is accessed via user clicking on descriptive help link"
+    />
+  ),
+};
+
+export const HelpLinkExpanded: StoryObj = {
+  render: () => (
+    <YesNoField
+      question="Does the driver own or use another vehicle?"
+      bodyText="Sub copy is displayed directly under the question, its used for questions which need a little more guidance for users to answer"
+      helpLinkLabel="Descriptive help link"
+      helpContent="Help copy is accessed via user clicking on descriptive help link"
+      defaultHelpOpen
+    />
+  ),
+};
+
+export const WithError: StoryObj = {
+  render: () => (
+    <YesNoField
+      question="Does the driver own or use another vehicle?"
+      bodyText="Sub copy is displayed directly under the question, its used for questions which need a little more guidance for users to answer"
+      helpLinkLabel="Descriptive help link"
+      helpContent="Help copy is accessed via user clicking on descriptive help link"
+      error="Error message goes here and is always displayed with the error icon"
+      defaultHelpOpen
+    />
+  ),
+};
+
 export const WithHelp: StoryObj = {
   render: () => (
     <YesNoField
