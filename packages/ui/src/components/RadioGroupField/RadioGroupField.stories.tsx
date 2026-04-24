@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { RadioGroupField } from "./RadioGroupField.web";
+import { YesNoField } from "../YesNoField/YesNoField.web";
 
 const meta: Meta<typeof RadioGroupField> = {
   title: "Components/Form fields/Radio buttons",
@@ -50,6 +51,16 @@ export const Stacked: Story = {
   },
 };
 
+
+export const WithHelp: StoryObj = {
+  render: () => (
+    <YesNoField
+      question="Does the car have any modifications?"
+      helpLinkLabel="What are the modifications?"
+      helpContent="Modifications are non-standard changes made to the car after manufacture, including things like new spoilers or alloy wheels. For the insurance to be valid you must include all modifications."
+    />
+  ),
+};
 
 export const WithExtraOptions: Story = {
   args: {
