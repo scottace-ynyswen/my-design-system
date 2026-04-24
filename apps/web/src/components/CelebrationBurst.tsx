@@ -1,73 +1,66 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 const COLORS = [
-  "#58AAE0", // aqua
-  "#FFD700", // gold
-  "#FF6B6B", // coral
-  "#50E3C2", // mint
-  "#F5A623", // orange
-  "#A78BFA", // lavender
-  "#34D399", // green
-  "#1f1f1f", // black (brand)
+  "#58AAE0", "#FFD700", "#FF6B6B",
+  "#50E3C2", "#F5A623", "#A78BFA", "#34D399",
 ];
 
 interface Particle {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  rotation: number;
-  rotationSpeed: number;
-  color: string;
-  w: number;
-  h: number;
+  x: number; y: number;
+  vx: number; vy: number;
+  rotation: number; rotationSpeed: number;
+  color: string; w: number; h: number;
   opacity: number;
 }
 
-function makeParticles(count: number, canvasWidth: number): Particle[] {
-  return Array.from({ length: count }, () => ({
-    x: Math.random() * canvasWidth,
-    y: Math.random() * -300 - 10,
-    vx: (Math.random() - 0.5) * 5,
-    vy: Math.random() * 4 + 1.5,
-    rotation: Math.random() * 360,
-    rotationSpeed: (Math.random() - 0.5) * 12,
-    color: COLORS[Math.floor(Math.random() * COLORS.length)],
-    w: Math.random() * 14 + 6,
-    h: Math.random() * 8 + 3,
-    opacity: 1,
-  }));
+function burst(rect: DOMRect, count: number): Particle[] {
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height / 2;
+
+  return Array.from({ length: count }, () => {
+    // Spawn along the perimeter of the box
+    const edge = Math.floor(Math.random() * 4);
+    let sx: number, sy: number;
+    if (edge === 0) { sx = rect.left + Math.random() * rect.width; sy = rect.top; }
+    else if (edge === 1) { sx = rect.left + Math.random() * rect.width; sy = rect.bottom; }
+    else if (edge === 2) { sx = rect.left; sy = rect.top + Math.random() * rect.height; }
+    else { sx = rect.right; sy = rect.top + Math.random() * rect.height; }
+
+    // Direction: outward from center + randomness
+    const angle = Math.atan2(sy - cy, sx - cx) + (Math.random() - 0.5) * 1.2;
+    const speed = Math.random() * 7 + 3;
+
+    return {
+      x: sx, y: sy,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed - Math.random() * 2, // slight upward bias
+      rotation: Math.random() * 360,
+      rotationSpeed: (Math.random() - 0.5) * 14,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      w: Math.random() * 12 + 6,
+      h: Math.random() * 7 + 3,
+      opacity: 1,
+    };
+  });
 }
 
 interface Props {
   show: boolean;
+  originRef: React.RefObject<HTMLDivElement | null>;
   onDone: () => void;
 }
 
-const DURATION = 4200;
+const DURATION = 2600;
 
-export function CelebrationBurst({ show, onDone }: Props) {
+export function CelebrationBurst({ show, originRef, onDone }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef<number>(0);
-  const [phase, setPhase] = useState<"hidden" | "entering" | "visible" | "leaving">("hidden");
 
   useEffect(() => {
-    if (!show) {
-      setPhase("hidden");
-      return;
-    }
+    if (!show) return;
 
-    setPhase("entering");
-
-    // Animate the card in on next frame
-    const t1 = setTimeout(() => setPhase("visible"), 30);
-    // Start fading card out before confetti ends
-    const t2 = setTimeout(() => setPhase("leaving"), DURATION - 900);
-    // Call onDone after full duration
-    const t3 = setTimeout(() => {
-      setPhase("hidden");
-      onDone();
-    }, DURATION);
+    const rect = originRef.current?.getBoundingClientRect();
+    if (!rect) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -76,7 +69,7 @@ export function CelebrationBurst({ show, onDone }: Props) {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const particles = makeParticles(140, canvas.width);
+    const particles = burst(rect, 90);
     const start = performance.now();
 
     function animate(now: number) {
@@ -88,10 +81,10 @@ export function CelebrationBurst({ show, onDone }: Props) {
       for (const p of particles) {
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.09;   // gravity
-        p.vx *= 0.995;  // gentle drag
+        p.vy += 0.18;    // gravity — pulls them down after the burst
+        p.vx *= 0.97;    // air resistance
         p.rotation += p.rotationSpeed;
-        p.opacity = remaining < 800 ? remaining / 800 : 1;
+        p.opacity = remaining < 700 ? remaining / 700 : 1;
 
         ctx.save();
         ctx.translate(p.x, p.y);
@@ -106,94 +99,26 @@ export function CelebrationBurst({ show, onDone }: Props) {
         rafRef.current = requestAnimationFrame(animate);
       } else {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        onDone();
       }
     }
 
     rafRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-      clearTimeout(t3);
-      cancelAnimationFrame(rafRef.current);
-    };
+    return () => cancelAnimationFrame(rafRef.current);
   }, [show]);
 
-  if (phase === "hidden") return null;
-
-  const cardVisible = phase === "visible";
-
   return (
-    <>
-      {/* Confetti canvas — full screen, non-interactive */}
-      <canvas
-        ref={canvasRef}
-        style={{
-          position: "fixed",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          pointerEvents: "none",
-          zIndex: 9998,
-        }}
-      />
-
-      {/* Congratulations card */}
-      <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          zIndex: 9999,
-          pointerEvents: "none",
-        }}
-      >
-        <div
-          style={{
-            background: "#ffffff",
-            border: "2px solid #1f1f1f",
-            padding: "40px 48px",
-            maxWidth: 460,
-            width: "90%",
-            textAlign: "center",
-            transform: cardVisible ? "translateY(0) scale(1)" : "translateY(24px) scale(0.92)",
-            opacity: phase === "leaving" ? 0 : cardVisible ? 1 : 0,
-            transition: phase === "leaving"
-              ? "opacity 0.8s ease-in-out, transform 0.8s ease-in-out"
-              : "opacity 0.35s ease-out, transform 0.35s ease-out",
-          }}
-        >
-          <div style={{ fontSize: 52, lineHeight: 1, marginBottom: 16 }}>🎉</div>
-          <h2
-            style={{
-              fontFamily: "Poppins, sans-serif",
-              fontWeight: 700,
-              fontSize: 28,
-              lineHeight: 1.2,
-              color: "#1f1f1f",
-              margin: "0 0 12px",
-            }}
-          >
-            You're all set!
-          </h2>
-          <p
-            style={{
-              fontFamily: "Poppins, sans-serif",
-              fontWeight: 400,
-              fontSize: 18,
-              lineHeight: 1.6,
-              color: "#3c3c3c",
-              margin: 0,
-            }}
-          >
-            Congratulations on renewing with{" "}
-            <strong style={{ fontWeight: 700, color: "#1f1f1f" }}>Confused.com</strong>.
-            Your cover is being sorted — you&apos;re in safe hands.
-          </p>
-        </div>
-      </div>
-    </>
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: "fixed",
+        inset: 0,
+        width: "100%",
+        height: "100%",
+        pointerEvents: "none",
+        zIndex: 9999,
+        display: show ? "block" : "none",
+      }}
+    />
   );
 }
