@@ -30,3 +30,11 @@ type Story = StoryObj<typeof SelectField>;
 
 export const Default: Story = {};
 
+export const WithSubCopyAndHelp: Story = {
+  args: {
+    bodyText: "Sub copy is displayed directly under the question, its used for questions which need a little more guidance for users to answer",
+    helpLinkLabel: "Descriptive help link",
+    helpContent: "Help copy is accessed via user clicking on descriptive help link",
+  },
+};
+

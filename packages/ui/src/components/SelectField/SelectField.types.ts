@@ -5,6 +5,9 @@ export type SelectOption = {
 
 export type SelectFieldProps = {
   question: string;
+  bodyText?: string;
+  helpLinkLabel?: string;
+  helpContent?: string;
   options: SelectOption[];
   value?: string;
   onChange?: (value: string) => void;
