@@ -64,7 +64,7 @@ const preview: Preview = {
             "Loading",
             "Modals",
             "Form fields",
-            ["Reg Fields", "Yes No Field", "Select Field", "Radio Group Field", "*"],
+            ["Reg Fields", "Yes No Field", "Select Field", "Radio buttons", "*"],
             "*",
           ],
           "Prices page",
