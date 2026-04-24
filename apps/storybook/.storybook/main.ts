@@ -1,7 +1,11 @@
 import type { StorybookConfig } from "@storybook/react-vite";
 import { mergeConfig } from "vite";
 import { createRequire } from "module";
+import { fileURLToPath, URL } from "url";
+import path from "path";
+
 const require = createRequire(import.meta.url);
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 const config: StorybookConfig = {
   stories: [
@@ -26,6 +30,7 @@ const config: StorybookConfig = {
         extensions: [".web.tsx", ".web.ts", ".web.jsx", ".web.js", ".tsx", ".ts", ".jsx", ".js"],
         alias: {
           "react-native": require.resolve("react-native-web"),
+          "@my-ds/ui": path.resolve(__dirname, "../../../packages/ui/src/index.ts"),
         },
       },
       define: {
