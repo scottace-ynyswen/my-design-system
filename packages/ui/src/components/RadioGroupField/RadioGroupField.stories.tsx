@@ -14,6 +14,26 @@ export default meta;
 type Story = StoryObj<typeof RadioGroupField>;
 
 export const Stacked: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `import { RadioGroupField } from "@my-ds/ui";
+
+<RadioGroupField
+  question="What level of cover do you need?"
+  helpLinkLabel="Cover levels explained"
+  helpContent="Comprehensive covers damage to your car and others. Third party, fire & theft covers damage to others plus fire and theft of your car."
+  options={[
+    { value: "comprehensive", label: "Comprehensive" },
+    { value: "tpft", label: "Third party, fire & theft" },
+    { value: "tpo", label: "Third party only" },
+  ]}
+  value={value}
+  onChange={setValue}
+/>`,
+      },
+    },
+  },
   render: () => {
     const [value, setValue] = useState("");
     const voluntaryExcess = (
@@ -51,16 +71,40 @@ export const Stacked: Story = {
   },
 };
 
-
 export const QuestionOnly: StoryObj = {
+  parameters: {
+    docs: {
+      source: {
+        code: `import { YesNoField } from "@my-ds/ui";
+
+<YesNoField
+  question="Does the driver own or use another vehicle?"
+  value={value}
+  onChange={setValue}
+/>`,
+      },
+    },
+  },
   render: () => (
-    <YesNoField
-      question="Does the driver own or use another vehicle?"
-    />
+    <YesNoField question="Does the driver own or use another vehicle?" />
   ),
 };
 
 export const WithSubCopy: StoryObj = {
+  parameters: {
+    docs: {
+      source: {
+        code: `import { YesNoField } from "@my-ds/ui";
+
+<YesNoField
+  question="Does the driver own or use another vehicle?"
+  bodyText="Sub copy is displayed directly under the question, its used for questions which need a little more guidance for users to answer"
+  value={value}
+  onChange={setValue}
+/>`,
+      },
+    },
+  },
   render: () => (
     <YesNoField
       question="Does the driver own or use another vehicle?"
@@ -70,6 +114,22 @@ export const WithSubCopy: StoryObj = {
 };
 
 export const HelpLinkClosed: StoryObj = {
+  parameters: {
+    docs: {
+      source: {
+        code: `import { YesNoField } from "@my-ds/ui";
+
+<YesNoField
+  question="Does the driver own or use another vehicle?"
+  bodyText="Sub copy is displayed directly under the question, its used for questions which need a little more guidance for users to answer"
+  helpLinkLabel="Descriptive help link"
+  helpContent="Help copy is accessed via user clicking on descriptive help link"
+  value={value}
+  onChange={setValue}
+/>`,
+      },
+    },
+  },
   render: () => (
     <YesNoField
       question="Does the driver own or use another vehicle?"
@@ -81,6 +141,23 @@ export const HelpLinkClosed: StoryObj = {
 };
 
 export const HelpLinkExpanded: StoryObj = {
+  parameters: {
+    docs: {
+      source: {
+        code: `import { YesNoField } from "@my-ds/ui";
+
+<YesNoField
+  question="Does the driver own or use another vehicle?"
+  bodyText="Sub copy is displayed directly under the question, its used for questions which need a little more guidance for users to answer"
+  helpLinkLabel="Descriptive help link"
+  helpContent="Help copy is accessed via user clicking on descriptive help link"
+  defaultHelpOpen
+  value={value}
+  onChange={setValue}
+/>`,
+      },
+    },
+  },
   render: () => (
     <YesNoField
       question="Does the driver own or use another vehicle?"
@@ -93,6 +170,23 @@ export const HelpLinkExpanded: StoryObj = {
 };
 
 export const WithError: StoryObj = {
+  parameters: {
+    docs: {
+      source: {
+        code: `import { YesNoField } from "@my-ds/ui";
+
+<YesNoField
+  question="Does the driver own or use another vehicle?"
+  bodyText="Sub copy is displayed directly under the question, its used for questions which need a little more guidance for users to answer"
+  helpLinkLabel="Descriptive help link"
+  helpContent="Help copy is accessed via user clicking on descriptive help link"
+  error="Error message goes here and is always displayed with the error icon"
+  value={value}
+  onChange={setValue}
+/>`,
+      },
+    },
+  },
   render: () => (
     <YesNoField
       question="Does the driver own or use another vehicle?"
@@ -106,6 +200,21 @@ export const WithError: StoryObj = {
 };
 
 export const WithHelp: StoryObj = {
+  parameters: {
+    docs: {
+      source: {
+        code: `import { YesNoField } from "@my-ds/ui";
+
+<YesNoField
+  question="Does the car have any modifications?"
+  helpLinkLabel="What are the modifications?"
+  helpContent="Modifications are non-standard changes made to the car after manufacture, including things like new spoilers or alloy wheels."
+  value={value}
+  onChange={setValue}
+/>`,
+      },
+    },
+  },
   render: () => (
     <YesNoField
       question="Does the car have any modifications?"
@@ -116,6 +225,29 @@ export const WithHelp: StoryObj = {
 };
 
 export const WithExtraOptions: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `import { RadioGroupField } from "@my-ds/ui";
+
+<RadioGroupField
+  question="How many years no-claims bonus do you have?"
+  options={[
+    { value: "0", label: "No bonus" },
+    { value: "1", label: "1 year" },
+    { value: "2", label: "2 years" },
+  ]}
+  extraOptions={[
+    { value: "3", label: "3 years" },
+    { value: "4", label: "4 years" },
+    { value: "5+", label: "5 or more years" },
+  ]}
+  value={value}
+  onChange={setValue}
+/>`,
+      },
+    },
+  },
   args: {
     question: "How many years no-claims bonus do you have?",
     options: [
