@@ -12,7 +12,13 @@ const meta: Meta<typeof SelectField> = {
   title: "Components/Form fields/Drop down",
   component: SelectField,
   tags: ["autodocs"],
-  parameters: {},
+  parameters: {
+    docs: {
+      description: {
+        component: "Used sparingly but primarily when serving up more than 8 choices to a question. Anything below 8 choices then the radio button option is best.",
+      },
+    },
+  },
   args: {
     question: "When would you like your cover to begin, within the next 30 days?",
     options: coverDates,
