@@ -12,7 +12,7 @@ const meta: Meta<typeof RadioGroupField> = {
 export default meta;
 type Story = StoryObj<typeof RadioGroupField>;
 
-export const CoverLevel: Story = {
+export const Stacked: Story = {
   render: () => {
     const [value, setValue] = useState("");
     const voluntaryExcess = (
