@@ -50,16 +50,6 @@ export const CoverLevel: Story = {
   },
 };
 
-export const PaymentFrequency: Story = {
-  args: {
-    question: "How would you like to pay for your car insurance policy?",
-    bodyText: "It's typically cheaper to pay annually as insurers usually charge interest on monthly payments.",
-    options: [
-      { value: "annual", label: "Annual payment" },
-      { value: "monthly", label: "Monthly payments" },
-    ],
-  },
-};
 
 export const WithExtraOptions: Story = {
   args: {
