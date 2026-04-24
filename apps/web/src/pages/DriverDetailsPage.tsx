@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { RadioGroupField, YesNoField, SelectField, SliderField, Button } from "@my-ds/ui";
 import type { YesNoValue } from "@my-ds/ui";
+import { CelebrationBurst } from "../components/CelebrationBurst";
 
 function buildStartDates() {
   const dates: { value: string; label: string }[] = [];
@@ -24,11 +25,14 @@ export default function DriverDetailsPage({ reg, onContinue }: Props) {
   const [coverType, setCoverType] = useState("");
   const [vehicleValue, setVehicleValue] = useState(10000);
   const [startDate, setStartDate] = useState("");
+  const [celebrate, setCelebrate] = useState(false);
   const [ownsOtherVehicle, setOwnsOtherVehicle] = useState<YesNoValue>(null);
   const [hasClaims, setHasClaims] = useState<YesNoValue>(null);
   const [ncb, setNcb] = useState("");
 
   return (
+    <>
+    <CelebrationBurst show={celebrate} onDone={() => setCelebrate(false)} />
     <div className="flex flex-col gap-10">
       <div>
         <p className="font-poppins text-sm text-text-secondary mb-1">Registration: {reg.toUpperCase()}</p>
@@ -65,7 +69,7 @@ export default function DriverDetailsPage({ reg, onContinue }: Props) {
         question="When do you need your cover to start?"
         options={buildStartDates()}
         value={startDate}
-        onChange={setStartDate}
+        onChange={(v) => { setStartDate(v); setCelebrate(true); }}
         placeholder="Select a start date"
       />
 
@@ -108,5 +112,6 @@ export default function DriverDetailsPage({ reg, onContinue }: Props) {
         onPress={onContinue}
       />
     </div>
+    </>
   );
 }
