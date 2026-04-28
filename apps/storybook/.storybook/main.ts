@@ -1,8 +1,6 @@
 import type { StorybookConfig } from "@storybook/react-vite";
 import { mergeConfig } from "vite";
 import { createRequire } from "module";
-import { fileURLToPath } from "url";
-
 const require = createRequire(import.meta.url);
 
 const config: StorybookConfig = {
@@ -28,10 +26,10 @@ const config: StorybookConfig = {
         extensions: [".web.tsx", ".web.ts", ".web.jsx", ".web.js", ".tsx", ".ts", ".jsx", ".js"],
         alias: {
           "react-native": require.resolve("react-native-web"),
-          "@my-ds/ui": fileURLToPath(new URL("../../../packages/ui/src/index.ts", import.meta.url)),
         },
       },
       define: {
+        // Required by some RN libs
         __DEV__: JSON.stringify(process.env.NODE_ENV !== "production"),
         "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV ?? "development"),
       },
