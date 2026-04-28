@@ -17,7 +17,7 @@ function Welcome() {
 }
 
 const meta: Meta<typeof Welcome> = {
-  title: "Welcome",
+  title: "Documentation/Getting Started",
   component: Welcome,
   parameters: { layout: "fullscreen", nopadding: true },
 };

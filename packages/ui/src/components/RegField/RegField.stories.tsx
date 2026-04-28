@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { RegField } from "./RegField.web";
 
 const meta: Meta<typeof RegField> = {
-  title: "Components/Form fields/Reg Fields",
+  title: "Documentation/Components/Forms/Reg Field",
   component: RegField,
   tags: ["autodocs"],
   parameters: {},

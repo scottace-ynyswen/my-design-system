@@ -4,7 +4,7 @@ import { RadioGroupField } from "./RadioGroupField.web";
 import { YesNoField } from "../YesNoField/YesNoField.web";
 
 const meta: Meta<typeof RadioGroupField> = {
-  title: "Components/Form fields/Radio buttons",
+  title: "Documentation/Components/Forms/Question/Anatomy",
   component: RadioGroupField,
   tags: ["autodocs"],
   parameters: {},
@@ -13,7 +13,28 @@ const meta: Meta<typeof RadioGroupField> = {
 export default meta;
 type Story = StoryObj<typeof RadioGroupField>;
 
-export const Stacked: Story = {
+export const QuestionOnly: StoryObj = {
+  name: "Question only",
+  parameters: {
+    docs: {
+      source: {
+        code: `import { YesNoField } from "@my-ds/ui";
+
+<YesNoField
+  question="Does the driver own or use another vehicle?"
+  value={value}
+  onChange={setValue}
+/>`,
+      },
+    },
+  },
+  render: () => (
+    <YesNoField question="Does the driver own or use another vehicle?" />
+  ),
+};
+
+export const WithOptions: Story = {
+  name: "With options",
   parameters: {
     docs: {
       source: {
@@ -71,160 +92,8 @@ export const Stacked: Story = {
   },
 };
 
-export const QuestionOnly: StoryObj = {
-  parameters: {
-    docs: {
-      source: {
-        code: `import { YesNoField } from "@my-ds/ui";
-
-<YesNoField
-  question="Does the driver own or use another vehicle?"
-  value={value}
-  onChange={setValue}
-/>`,
-      },
-    },
-  },
-  render: () => (
-    <YesNoField question="Does the driver own or use another vehicle?" />
-  ),
-};
-
-export const WithSubCopy: StoryObj = {
-  parameters: {
-    docs: {
-      source: {
-        code: `import { YesNoField } from "@my-ds/ui";
-
-<YesNoField
-  question="Does the driver own or use another vehicle?"
-  bodyText="Sub copy is displayed directly under the question, its used for questions which need a little more guidance for users to answer"
-  value={value}
-  onChange={setValue}
-/>`,
-      },
-    },
-  },
-  render: () => (
-    <YesNoField
-      question="Does the driver own or use another vehicle?"
-      bodyText="Sub copy is displayed directly under the question, its used for questions which need a little more guidance for users to answer"
-    />
-  ),
-};
-
-export const HelpLinkClosed: StoryObj = {
-  parameters: {
-    docs: {
-      source: {
-        code: `import { YesNoField } from "@my-ds/ui";
-
-<YesNoField
-  question="Does the driver own or use another vehicle?"
-  bodyText="Sub copy is displayed directly under the question, its used for questions which need a little more guidance for users to answer"
-  helpLinkLabel="Descriptive help link"
-  helpContent="Help copy is accessed via user clicking on descriptive help link"
-  value={value}
-  onChange={setValue}
-/>`,
-      },
-    },
-  },
-  render: () => (
-    <YesNoField
-      question="Does the driver own or use another vehicle?"
-      bodyText="Sub copy is displayed directly under the question, its used for questions which need a little more guidance for users to answer"
-      helpLinkLabel="Descriptive help link"
-      helpContent="Help copy is accessed via user clicking on descriptive help link"
-    />
-  ),
-};
-
-export const HelpLinkExpanded: StoryObj = {
-  parameters: {
-    docs: {
-      source: {
-        code: `import { YesNoField } from "@my-ds/ui";
-
-<YesNoField
-  question="Does the driver own or use another vehicle?"
-  bodyText="Sub copy is displayed directly under the question, its used for questions which need a little more guidance for users to answer"
-  helpLinkLabel="Descriptive help link"
-  helpContent="Help copy is accessed via user clicking on descriptive help link"
-  defaultHelpOpen
-  value={value}
-  onChange={setValue}
-/>`,
-      },
-    },
-  },
-  render: () => (
-    <YesNoField
-      question="Does the driver own or use another vehicle?"
-      bodyText="Sub copy is displayed directly under the question, its used for questions which need a little more guidance for users to answer"
-      helpLinkLabel="Descriptive help link"
-      helpContent="Help copy is accessed via user clicking on descriptive help link"
-      defaultHelpOpen
-    />
-  ),
-};
-
-export const WithError: StoryObj = {
-  parameters: {
-    docs: {
-      source: {
-        code: `import { YesNoField } from "@my-ds/ui";
-
-<YesNoField
-  question="Does the driver own or use another vehicle?"
-  bodyText="Sub copy is displayed directly under the question, its used for questions which need a little more guidance for users to answer"
-  helpLinkLabel="Descriptive help link"
-  helpContent="Help copy is accessed via user clicking on descriptive help link"
-  error="Error message goes here and is always displayed with the error icon"
-  value={value}
-  onChange={setValue}
-/>`,
-      },
-    },
-  },
-  render: () => (
-    <YesNoField
-      question="Does the driver own or use another vehicle?"
-      bodyText="Sub copy is displayed directly under the question, its used for questions which need a little more guidance for users to answer"
-      helpLinkLabel="Descriptive help link"
-      helpContent="Help copy is accessed via user clicking on descriptive help link"
-      error="Error message goes here and is always displayed with the error icon"
-      defaultHelpOpen
-    />
-  ),
-};
-
-export const WithHelp: StoryObj = {
-  parameters: {
-    docs: {
-      source: {
-        code: `import { YesNoField } from "@my-ds/ui";
-
-<YesNoField
-  question="Does the car have any modifications?"
-  helpLinkLabel="What are the modifications?"
-  helpContent="Modifications are non-standard changes made to the car after manufacture, including things like new spoilers or alloy wheels."
-  value={value}
-  onChange={setValue}
-/>`,
-      },
-    },
-  },
-  render: () => (
-    <YesNoField
-      question="Does the car have any modifications?"
-      helpLinkLabel="What are the modifications?"
-      helpContent="Modifications are non-standard changes made to the car after manufacture, including things like new spoilers or alloy wheels. For the insurance to be valid you must include all modifications."
-    />
-  ),
-};
-
 export const WithExtraOptions: Story = {
+  name: "With extra options",
   parameters: {
     docs: {
       source: {

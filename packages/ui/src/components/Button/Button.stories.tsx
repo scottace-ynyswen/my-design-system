@@ -20,7 +20,7 @@ function ArrowRight() {
 type StoryArgs = ButtonProps & { showRightIcon?: boolean; showLeftIcon?: boolean };
 
 const meta: Meta<StoryArgs> = {
-  title: "Components/Buttons & links",
+  title: "Documentation/Components/Buttons",
   component: Button,
   tags: ["autodocs"],
   parameters: {},

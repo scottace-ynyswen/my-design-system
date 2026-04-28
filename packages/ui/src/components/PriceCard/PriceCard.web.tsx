@@ -43,12 +43,14 @@ export function PriceCard({
         </div>
         <div className="flex flex-col flex-1 min-w-0">
           <div className="bg-mono-midGrey flex flex-1 items-center px-4 py-[15px]">
-            <span className="font-poppins font-bold text-heading text-mono-black">
-              £{pricePounds}.
-            </span>
-            <span className="font-poppins font-semibold text-sm leading-5 text-mono-black self-start mt-1">
-              {pence}
-            </span>
+            <div className="flex items-start">
+              <span className="font-poppins font-bold text-heading text-mono-black">
+                £{pricePounds}.
+              </span>
+              <span className="font-poppins font-semibold text-sm leading-5 text-mono-black">
+                {pence}
+              </span>
+            </div>
           </div>
           {expiresInDays !== undefined && (
             <div className="bg-surface border-l border-border flex items-center gap-2 h-9 px-4 py-2">

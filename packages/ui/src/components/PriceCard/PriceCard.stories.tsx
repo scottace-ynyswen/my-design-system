@@ -5,7 +5,7 @@ import { PriceCard } from "./PriceCard.web";
 const AXA_LOGO = "https://www.figma.com/api/mcp/asset/34396799-c5d0-4c67-8014-acf93a4f2451";
 
 const meta: Meta<typeof PriceCard> = {
-  title: "App/Price card",
+  title: "Documentation/Components/Data Display/Price card",
   component: PriceCard,
   tags: ["autodocs"],
   parameters: {

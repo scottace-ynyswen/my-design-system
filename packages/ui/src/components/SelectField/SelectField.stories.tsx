@@ -15,7 +15,7 @@ const coverDates = Array.from({ length: 8 }, (_, i) => {
 type StoryArgs = SelectFieldProps & { showBodyText?: boolean; showHelp?: boolean };
 
 const meta: Meta<StoryArgs> = {
-  title: "Components/Form fields/Drop down",
+  title: "Documentation/Components/Forms/Drop down",
   component: SelectField,
   tags: ["autodocs"],
   parameters: {

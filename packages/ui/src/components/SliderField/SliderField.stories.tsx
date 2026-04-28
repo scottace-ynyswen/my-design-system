@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { SliderField } from "./SliderField.web";
 
 const meta: Meta<typeof SliderField> = {
-  title: "Components/Form fields/Slider",
+  title: "Documentation/Components/Forms/Slider",
   component: SliderField,
   tags: ["autodocs"],
   argTypes: {

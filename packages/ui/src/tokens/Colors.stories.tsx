@@ -233,7 +233,7 @@ function ColorsPage() {
 }
 
 const meta: Meta = {
-  title: "Colours",
+  title: "Documentation/Foundations/Colors",
   parameters: { layout: "fullscreen", nopadding: true },
 };
 

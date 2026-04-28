@@ -3,7 +3,7 @@ import { Card } from "./Card";
 import { Badge } from "../Badge";
 
 const meta: Meta<typeof Card> = {
-  title: "Components/Card",
+  title: "Documentation/Components/Data Display/Cards",
   component: Card,
   tags: ["autodocs"],
   parameters: {},

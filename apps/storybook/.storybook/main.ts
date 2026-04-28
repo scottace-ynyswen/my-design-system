@@ -26,6 +26,7 @@ const config: StorybookConfig = {
         extensions: [".web.tsx", ".web.ts", ".web.jsx", ".web.js", ".tsx", ".ts", ".jsx", ".js"],
         alias: {
           "react-native": require.resolve("react-native-web"),
+          "@my-ds/ui": require.resolve("../../../packages/ui/src/index.ts"),
         },
       },
       define: {
