@@ -31,8 +31,6 @@ export type { SelectFieldProps, SelectOption } from "./components/SelectField";
 export { RadioGroupField } from "./components/RadioGroupField";
 export type { RadioGroupFieldProps, RadioOption } from "./components/RadioGroupField";
 
-export { SliderField } from "./components/SliderField";
-export type { SliderFieldProps } from "./components/SliderField";
 
 export { Icon } from "./components/Icon";
 export type { IconProps, IconName } from "./components/Icon";
