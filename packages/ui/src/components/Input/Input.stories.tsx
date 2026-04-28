@@ -11,27 +11,57 @@ const meta: Meta<typeof Input> = {
     size:     { control: "select", options: ["sm", "md", "lg"] },
     disabled: { control: "boolean" },
   },
-  args: { placeholder: "Enter text…", size: "md" },
+  args: { placeholder: "Enter text…", size: "lg" },
 };
 
 export default meta;
 type Story = StoryObj<typeof Input>;
 
-export const WithLabel: Story = {
-  args: { label: "Email address", placeholder: "you@example.com", hint: "We'll never share your email." },
+export const Default: Story = {
+  args: { label: "First name", placeholder: "Enter your first name" },
+};
+
+export const WithBodyText: Story = {
+  args: {
+    label: "Date of birth",
+    bodyText: "We use this to calculate your age at the time of the policy.",
+    placeholder: "DD / MM / YYYY",
+  },
+};
+
+export const WithHelp: Story = {
+  args: {
+    label: "Annual mileage",
+    bodyText: "How many miles do you drive per year?",
+    helpLinkLabel: "How do I work out my mileage?",
+    helpContent: "Check your MOT certificate or service history — it shows odometer readings from each visit. You can also use an online calculator.",
+    placeholder: "e.g. 8,000",
+  },
 };
 
 export const WithError: Story = {
-  args: { label: "Email address", value: "bad-email", error: "Please enter a valid email address." },
+  args: {
+    label: "First name",
+    value: "",
+    error: "Please enter your first name.",
+  },
+};
+
+export const WithHint: Story = {
+  args: {
+    label: "Email address",
+    placeholder: "you@example.com",
+    hint: "We'll only use this to send your policy documents.",
+  },
 };
 
 export const Disabled: Story = {
-  args: { label: "Disabled field", value: "Read only value", disabled: true },
+  args: { label: "Vehicle registration", value: "AB12 CDE", disabled: true },
 };
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16, width: 360 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 24, width: 360 }}>
       <Input label="Small" placeholder="sm" size="sm" />
       <Input label="Medium" placeholder="md" size="md" />
       <Input label="Large" placeholder="lg" size="lg" />
@@ -41,7 +71,7 @@ export const AllSizes: Story = {
 
 export const AllStates: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16, width: 360 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 24, width: 360 }}>
       <Input label="Default" placeholder="Default state" />
       <Input label="With hint" placeholder="With hint" hint="Helpful hint text goes here." />
       <Input label="Error" placeholder="Error state" error="Something went wrong." />
