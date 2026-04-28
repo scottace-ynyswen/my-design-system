@@ -146,6 +146,13 @@ const paths: Record<IconName, React.ReactNode> = {
       fill="none"
     />
   ),
+  "error": (
+    <>
+      <rect width="24" height="24" fill="#A20101" />
+      <path d="M10.5519 13.9675L14.1074 13.9675L14.1074 4.03261L10.5519 4.03261L10.5519 13.9675Z" fill="white" />
+      <path d="M10.5519 20.0483L14.1074 20.0483L14.1074 16.5369L10.5519 16.5369L10.5519 20.0483Z" fill="white" />
+    </>
+  ),
 };
 
 export function Icon({ name, size = 24, className, "aria-label": ariaLabel }: IconProps) {

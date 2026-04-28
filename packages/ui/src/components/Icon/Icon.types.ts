@@ -14,6 +14,7 @@ export const iconNames = [
   "info",
   "arrow-right",
   "arrow-left",
+  "error",
 ] as const;
 
 export type IconName = (typeof iconNames)[number];

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { cn } from "../../utils/cn";
 import type { YesNoFieldProps, YesNoValue } from "./YesNoField.types";
+import { Icon } from "../Icon";
 
 function RadioCircle({ selected, accentColor }: { selected: boolean; accentColor: string }) {
   return (
@@ -27,16 +28,6 @@ function ChevronRight({ open }: { open: boolean }) {
   );
 }
 
-function ErrorIcon() {
-  return (
-    <div className="flex items-center justify-center bg-semantic-error w-6 h-6 shrink-0">
-      <svg width="4" height="12" viewBox="0 0 4 12" fill="none" aria-hidden="true">
-        <rect width="4" height="7" rx="2" fill="white" />
-        <rect y="9.5" width="4" height="2.5" rx="1.25" fill="white" />
-      </svg>
-    </div>
-  );
-}
 
 export function YesNoField({
   question,
@@ -107,7 +98,7 @@ export function YesNoField({
 
         {error && (
           <div className="flex items-center gap-2" role="alert">
-            <ErrorIcon />
+            <Icon name="error" aria-hidden={true} />
             <p className="font-poppins font-semibold text-[18px] leading-[26px] text-semantic-error">
               {error}
             </p>

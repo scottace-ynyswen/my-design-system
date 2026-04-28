@@ -90,7 +90,10 @@ export function Input({
 
       {error && (
         <View className="flex-row items-center gap-2" accessibilityRole="alert">
-          <View className="items-center justify-center bg-semantic-error w-6 h-6 shrink-0" />
+          <View className="items-center justify-center bg-semantic-error w-6 h-6 shrink-0">
+            <View className="w-[3.5px] h-[10px] bg-white" />
+            <View className="w-[3.5px] h-[3.5px] bg-white mt-[2.5px]" />
+          </View>
           <Text className="font-poppins font-semibold text-[18px] leading-[26px] text-semantic-error flex-1">
             {error}
           </Text>
