@@ -56,9 +56,10 @@ const config: Config = {
           focus:   "#7b61ff",
         },
         product: {
-          motor: "#8AC4E9",
-          home:  "#F5A623",
-          van:   "#7ED321",
+          motor:         "#8AC4E9",
+          home:          "#F5A623",
+          homeInsurance: "#4DB6A1",
+          van:           "#7ED321",
         },
         semantic: {
           error: "#A20101",
