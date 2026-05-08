@@ -141,7 +141,6 @@ function SpecialFeatureBar() {
 function PriceCard() {
   return (
     <div className="border-4 border-product-homeInsurance w-[1100px]">
-      <div className="bg-product-homeInsurance h-1 w-full shrink-0" />
       <div className="bg-mono-midGrey flex gap-px items-stretch">
         <LogoCell />
         <PriceCell />
@@ -177,9 +176,7 @@ export const FullCard: Story = {
 export const LogoCellSection: Story = {
   render: () => (
     <div className="p-8 bg-surface-raised">
-      <div className="border-4 border-product-homeInsurance inline-flex">
-        <LogoCell />
-      </div>
+      <LogoCell />
     </div>
   ),
 };
@@ -187,9 +184,7 @@ export const LogoCellSection: Story = {
 export const PriceCellSection: Story = {
   render: () => (
     <div className="p-8 bg-surface-raised">
-      <div className="border-4 border-product-homeInsurance inline-flex">
-        <PriceCell />
-      </div>
+      <PriceCell />
     </div>
   ),
 };
@@ -197,7 +192,7 @@ export const PriceCellSection: Story = {
 export const CoverItemIncluded: Story = {
   render: () => (
     <div className="p-8 bg-surface-raised">
-      <div className="border-4 border-product-homeInsurance inline-flex w-[160px]">
+      <div className="inline-flex w-[160px]">
         <CoverItem label="Legal cover" included price="£24.90 added to total" />
       </div>
     </div>
@@ -207,7 +202,7 @@ export const CoverItemIncluded: Story = {
 export const CoverItemExcluded: Story = {
   render: () => (
     <div className="p-8 bg-surface-raised">
-      <div className="border-4 border-product-homeInsurance inline-flex w-[160px]">
+      <div className="inline-flex w-[160px]">
         <CoverItem label="Contents accidental damage" included={false} />
       </div>
     </div>
@@ -217,9 +212,7 @@ export const CoverItemExcluded: Story = {
 export const ActionCellSection: Story = {
   render: () => (
     <div className="p-8 bg-surface-raised">
-      <div className="border-4 border-product-homeInsurance inline-flex">
-        <ActionCell />
-      </div>
+      <ActionCell />
     </div>
   ),
 };
